@@ -67,8 +67,10 @@ with given.wordcounts_for_a_document:
 
     with when.calculating_honores_r:
         V = measures.calculate_v(wordcounts)
-        honore_r = measures.honores_r(wordcounts, V)
+        honores_r = measures.honores_r(wordcounts, V)
 
         with then.it_should_correctly_calculate_honores_r:
-            answer = 100 * log(sum(wordcounts.values())) / (1 - v[1]/len(wordcounts))
+            from math import log
+            answer = 100 * log(sum(wordcounts.values())) / (1 - V[1]/len(wordcounts))
             the(honores_r).should.equal(answer)
+

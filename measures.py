@@ -4,7 +4,7 @@ Statistical measures of authorship
 from __future__ import print_function
 from collections import defaultdict
 import sys
-
+import math
 
 def hapax_legomena(wordcounts):
     unique_words = 0.0
@@ -77,3 +77,5 @@ def brunets_w(wordcounts):
 
     return corpus_size ** (vocab_size ** -0.172)
 
+def honores_r(wordcounts, V):
+    return 100 * math.log(sum(wordcounts.values())) / (1 - V[1]/len(wordcounts))
