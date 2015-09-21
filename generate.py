@@ -44,19 +44,21 @@ def process_sentence(sentence):
 
 def process_word(word):
     stats = defaultdict(float)
-    stats['tc'] += len(word)
+
+    for feature, d in features['word'].iteritems():
+        if d['filter'](word):
+            if d['summable']:
+                stats[feature] += d['action'](word)
+            else:
+                stats[feature] = d['action'](word)
 
     for c in word:
-        stats['tABC'] += c.isupper()
-        stats['t123'] += c.isdigit()
-
-        if c.isalpha():
-            stats['tabc'] += 1
-            stats[c.upper()] += 1
-
-
-    stats['words'] = 1
-    stats['short_words'] = 1 if len(stats) < 0 else 0
+        for feature, d in features['char'].iteritems():
+            if d['filter'](c):
+                if d['summable']:
+                    stats[feature] += d['action'](stats[feature], c)
+                else:
+                    stats[feature] = d['action'](stats[feature], c)
 
     return stats
 

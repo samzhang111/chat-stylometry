@@ -98,22 +98,19 @@ with given.a_word:
     with when.stats_are_calculated_for_a_word:
         stats = generate.process_word(word)
         fixtures = {
-                'summable': {
-                    'tc':5,
-                    'tabc':5,
-                    'tABC':1,
-                    't123':0,
-                    't!@#':0,
-                    'short_words':0,
-                    },
+                'tc':5,
+                'tabc':5,
+                'tABC':1,
+                't123':0,
+                't!@#':0,
+                'short_words':0,
                 'chars': {
                     'H':1,
                     'E':1,
                     'L':2,
                     'O':1,
                     '!':0,
-                    },
-
+                    }
                 }
 
         with then.a_nested_stats_structure_is_created:
