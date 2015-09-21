@@ -12,6 +12,8 @@ def process_sentence_list(sentence_list):
 
 
 def process_sentence(sentence):
+    #stats = defaultdict(lambda: defaultdict(float))
+
     wordcount = defaultdict(int)
     stats = defaultdict(float)
     words = whitespace_word_tokenize(sentence)
